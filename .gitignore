@@ -1,0 +1,8 @@
+# compilation
+*.o
+
+# targets
+*.out
+/checker
+/push_swap
+libft.a
