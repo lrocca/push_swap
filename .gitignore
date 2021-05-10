@@ -1,8 +1,12 @@
 # compilation
 *.o
+/obj
 
 # targets
 *.out
 /checker
 /push_swap
 libft.a
+
+# vscode
+.vscode
