@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/10 19:56:18 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/11 20:34:12 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,15 @@ SRC		=	./src
 OBJ		=	./obj
 INC		=	./inc
 LIB		=	./lib
+
+# common
+COMMON_DIR		=	$(SRC)/common
+COMMON_FILES	=	main.c \
+					parse.c \
+					exit.c \
+					print.c
+COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
+COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/common%,$(COMMON_SRC:.c=.o))
 
 # checker
 CHECKER			=	checker
@@ -33,10 +42,10 @@ LIBFT		=	$(LIBFT_DIR)/libft.a
 
 all: $(CHECKER)
 
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+$(LIBFT): $(LIBFT_DIR)
+	make -C $<
 
-$(CHECKER): $(CHECKER_OBJ) $(LIBFT)
+$(CHECKER): $(CHECKER_OBJ) $(COMMON_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ)/%.o: $(SRC)/%.c $(INC) Makefile
@@ -53,3 +62,6 @@ fclean: clean
 	$(RM) $(CHECKER)
 
 re: fclean all
+
+test: all
+	./checker 1 2 3
