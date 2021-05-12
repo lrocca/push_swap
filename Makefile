@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/11 20:34:12 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/12 18:54:36 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,17 @@ COMMON_DIR		=	$(SRC)/common
 COMMON_FILES	=	main.c \
 					parse.c \
 					exit.c \
-					print.c
+					print.c \
+					exec/swap.c \
+					exec/push.c
 COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
 COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/common%,$(COMMON_SRC:.c=.o))
 
 # checker
 CHECKER			=	checker
 CHECKER_DIR		=	$(SRC)/$(CHECKER)
-CHECKER_FILES	=	main.c
+CHECKER_FILES	=	main.c \
+					exit.c
 CHECKER_SRC		=	$(addprefix $(CHECKER_DIR)/, $(CHECKER_FILES))
 CHECKER_OBJ		=	$(patsubst $(CHECKER_DIR)%,$(OBJ)/$(CHECKER)%,$(CHECKER_SRC:.c=.o))
 

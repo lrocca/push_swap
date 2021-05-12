@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 17:19:34 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 18:50:22 by lrocca           ###   ########.fr       */
+/*   Created: 2021/05/12 16:00:51 by lrocca            #+#    #+#             */
+/*   Updated: 2021/05/12 16:45:33 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int	main(int ac, const char **av)
+void	ft_free(t_ps *ps)
 {
-	t_ps	ps;
-
-	if (ac == 1)
-		return (0);
-	ps.av = av;
-	ft_parse(&ps);
-	ft_printstacks(&ps);
-	return (0);
+	ft_printstacks(ps);
+	return ;
 }

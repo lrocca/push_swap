@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 20:05:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/11 19:03:29 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/12 16:37:34 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,19 @@
 # define COMMON_H
 
 # include "main.h"
+
+/*
+** @todo atoi_base
+*/
+# define	BASE	10
+
+/*
+** Print options.
+*/
+# define	PRINT_DIV_VER	'|'
+# define	PRINT_DIV_HOR	'-'
+# define	PRINT_SPACE		' '
+# define	PRINT_NAME_A	'a'
+# define	PRINT_NAME_B	'b'
 
 #endif
