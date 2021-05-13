@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/13 03:04:47 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/13 03:27:56 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ CFLAGS	=	-Wall -Wextra -Werror
 SRC		=	./src
 OBJ		=	./obj
 INC		=	./inc
-LIB		=	./lib
 
 # common
-COMMON_DIR		=	$(SRC)/common
+COMMON			=	common
+COMMON_DIR		=	$(SRC)/$(COMMON)
 COMMON_FILES	=	main.c \
 					parse.c \
 					check.c \
@@ -32,7 +32,7 @@ COMMON_FILES	=	main.c \
 					exec/rotate.c \
 					exec/reverse.c
 COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
-COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/common%,$(COMMON_SRC:.c=.o))
+COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/$(COMMON)%,$(COMMON_SRC:.c=.o))
 
 # checker
 CHECKER			=	checker
@@ -44,7 +44,7 @@ CHECKER_SRC		=	$(addprefix $(CHECKER_DIR)/, $(CHECKER_FILES))
 CHECKER_OBJ		=	$(patsubst $(CHECKER_DIR)%,$(OBJ)/$(CHECKER)%,$(CHECKER_SRC:.c=.o))
 
 # libft
-LIBFT_DIR	=	$(LIB)/libft
+LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
 all: $(CHECKER)
