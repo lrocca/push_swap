@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:27:54 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:12:11 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 03:20:29 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 # define OPS		"sa sb ss pa pb ra rb rr rra rrb rrr"
 # define OPS_LEN	36
 
-# define SUCCESS_STR	"OK"
-# define FAILURE_STR	"KO"
+# define ERROR_MSG	"Error"
 
 typedef struct s_node
 {

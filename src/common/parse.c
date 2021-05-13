@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:35:11 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 16:47:04 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 03:36:56 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,28 @@ static int	is_valid_input(const char *s)
 	return (i);
 }
 
+static char	is_unique(t_node *head, int n)
+{
+	t_node	*curr;
+
+	if (!head)
+		return (1);
+	if (n == head->value)
+		return (0);
+	curr = head->next;
+	while (curr != head)
+	{
+		if (n == curr->value)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
+}
+
 static void	handle_str(t_ps *ps, const char *s)
 {
 	int		i;
+	int		n;
 	char	**split;
 
 	split = ft_splitspace(s);
@@ -38,7 +57,10 @@ static void	handle_str(t_ps *ps, const char *s)
 	{
 		if (!is_valid_input(split[i]))
 			ft_error(ps);
-		ft_nodeadd_back(&ps->a, ft_atoi(split[i++]));
+		n = ft_atoi(split[i++]);
+		if (!is_unique(ps->a, n))
+			ft_error(ps);
+		ft_nodeadd_back(&ps->a, n);
 	}
 }
 
