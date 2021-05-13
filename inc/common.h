@@ -6,14 +6,9 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 20:05:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 16:37:34 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 01:50:45 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-** @file common.h
-** @brief Header file for the common sources.
-*/
 
 #ifndef COMMON_H
 # define COMMON_H
@@ -21,12 +16,12 @@
 # include "main.h"
 
 /*
-** @todo atoi_base
+** Base used to convert from input
 */
 # define	BASE	10
 
 /*
-** Print options.
+** Print options
 */
 # define	PRINT_DIV_VER	'|'
 # define	PRINT_DIV_HOR	'-'
