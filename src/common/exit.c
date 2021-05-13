@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:31:43 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 16:48:43 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 02:36:59 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	ft_exit(t_ps *ps, int n)
 void	ft_error(t_ps *ps)
 {
 	ft_putendl_fd("Error", STDERR_FILENO);
-	ft_exit(ps, 1);
+	ft_exit(ps, EXIT_FAILURE);
 }
