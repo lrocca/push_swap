@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:27:54 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 18:52:40 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 03:12:11 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 
 # include "libft.h"
+
+# define SUCCESS_STR	"OK"
+# define FAILURE_STR	"KO"
 
 typedef struct s_node
 {
@@ -78,6 +81,26 @@ void	ft_nodepush_front(t_node **head, t_node *new);
 ** @param	ps	The pointer of the program's structure
 */
 void	ft_parse(t_ps *ps);
+
+/*
+** check.c
+*/
+
+/*
+** Check if the given circular linked list is sorted in ascending order.
+**
+** @param	head	The pointer to the first node
+** @return	`1` if sorted, `0` if not
+*/
+char	ft_issorted(t_node *head);
+
+/*
+** Check if stack A is sorted and stack B is empty.
+**
+** @param	ps	The pointer of the program's structure
+** @return	Non-zero if something is off
+*/
+char	ft_check(t_ps *ps);
 
 /*
 ** exit.c

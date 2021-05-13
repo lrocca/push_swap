@@ -24,6 +24,7 @@ LIB		=	./lib
 COMMON_DIR		=	$(SRC)/common
 COMMON_FILES	=	main.c \
 					parse.c \
+					check.c \
 					exit.c \
 					print.c \
 					exec/swap.c \
