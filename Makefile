@@ -38,6 +38,7 @@ COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/common%,$(COMMON_SRC:.c=.o))
 CHECKER			=	checker
 CHECKER_DIR		=	$(SRC)/$(CHECKER)
 CHECKER_FILES	=	main.c \
+					read.c \
 					exit.c
 CHECKER_SRC		=	$(addprefix $(CHECKER_DIR)/, $(CHECKER_FILES))
 CHECKER_OBJ		=	$(patsubst $(CHECKER_DIR)%,$(OBJ)/$(CHECKER)%,$(CHECKER_SRC:.c=.o))

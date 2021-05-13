@@ -14,9 +14,12 @@
 # define MAIN_H
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <unistd.h>
 
 # include "libft.h"
+
+# define OPS		"sa sb ss pa pb ra rb rr rra rrb rrr"
+# define OPS_LEN	36
 
 # define SUCCESS_STR	"OK"
 # define FAILURE_STR	"KO"
@@ -33,6 +36,7 @@ typedef struct s_ps
 	const char	**av;
 	t_node		*a;
 	t_node		*b;
+	t_list		*op;
 }	t_ps;
 
 /*
