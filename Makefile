@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/12 18:54:36 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/13 03:04:47 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ COMMON_FILES	=	main.c \
 					exit.c \
 					print.c \
 					exec/swap.c \
-					exec/push.c
+					exec/push.c \
+					exec/rotate.c \
+					exec/reverse.c
 COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
 COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/common%,$(COMMON_SRC:.c=.o))
 

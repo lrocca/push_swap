@@ -111,7 +111,7 @@ void	ft_error(t_ps *ps);
 void	ft_printstacks(t_ps *ps);
 
 /*
-** exec/swap.c
+** Operations
 */
 
 /*
@@ -152,6 +152,52 @@ void	pa(t_ps *ps);
 ** @param	ps	The pointer of the program's structure
 */
 void	pb(t_ps *ps);
+
+/*
+** Shift up all elements of stack A by 1.
+** The first element becomes the last one.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	ra(t_ps *ps);
+
+/*
+** Shift up all elements of stack B by 1.
+** The first element becomes the last one.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	rb(t_ps *ps);
+
+/*
+** `ra` and `rb` at the same time.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	rr(t_ps *ps);
+
+/*
+** Shift down all elements of stack A by 1.
+** The last elementbecomes the first one.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	rra(t_ps *ps);
+
+/*
+** Shift down all elements of stack B by 1.
+** The last element becomes the first one.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	rrb(t_ps *ps);
+
+/*
+** `rra` and `rrb` at the same time.
+**
+** @param	ps	The pointer of the program's structure
+*/
+void	rrr(t_ps *ps);
 
 /*
 ** DEFINED BY THE PROGRAM
