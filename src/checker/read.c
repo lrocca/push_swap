@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:27:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:08:56 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/13 03:57:56 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	new_op(t_ps *ps, char c)
 		if (i > 2 || !ft_isalpha(c))
 			ft_error(ps);
 		buffer[i] = c;
-		if (ft_strnstr(buffer, OPS, OPS_LEN))
+		if (ft_strnstr(OPS, buffer, OPS_LEN) != (char *)&OPS)
 			ft_lstadd_back(&ps->op, ft_lstnew(ft_strdup(buffer)));
 		else if (!buffer[2])
 			;
