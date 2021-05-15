@@ -8,8 +8,24 @@
 
 ### node
 
-- [ ] free one node
-- [ ] free stack
+- [x] free one node
+- [x] free stack
+
+### cmd reference
+
+op | val | i
+---|-----|---
+sa | 1 | 0
+sb | 4 | 3
+ss | 7 | 6
+pa | 10 | 9
+pb | 13 | 12
+ra | 16 | 15
+rb | 19 | 18
+rr | 22 | 21
+rra | 25 | 24
+rrb | 29 | 28
+rrr | 33 | 32
 
 ## checker
 
@@ -22,7 +38,7 @@
 
 ### read
 
-- [ ] not validating operations at input
+- [x] not validating operations at input
 
 ### options
 
