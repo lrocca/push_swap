@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:27:54 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:46:42 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 20:12:01 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define ERROR_MSG	"Error"
 
+# define FLAGS_V	1
+
 typedef struct s_node
 {
 	struct s_node	*prev;
@@ -32,11 +34,12 @@ typedef struct s_node
 
 typedef struct s_ps
 {
-	const char	**av;
 	t_node		*a;
 	t_node		*b;
-	t_list		*op;
+	int			flags;
 }	t_ps;
+
+typedef void	(*t_cmd)(t_ps *ps);
 
 /*
 ** COMMON
@@ -74,6 +77,13 @@ void	ft_nodeadd_back(t_node **head, int value);
 void	ft_nodepush_front(t_node **head, t_node *new);
 
 /*
+** Free a circular linked list.
+**
+** @param	head	The pointer to the first node
+*/
+void	ft_nodeclear(t_node **head);
+
+/*
 ** parse.c
 */
 
@@ -83,7 +93,7 @@ void	ft_nodepush_front(t_node **head, t_node *new);
 **
 ** @param	ps	The pointer of the program's structure
 */
-void	ft_parse(t_ps *ps);
+void	ft_parse(t_ps *ps, const char **av);
 
 /*
 ** check.c
@@ -121,7 +131,7 @@ void	ft_exit(t_ps *ps, int n);
 /*
 ** Print `Error\\n` on the standard error, then call `ft_exit`.
 **
-** @return	ps	The pointer of the program's structure
+** @param	ps	The pointer of the program's structure
 */
 void	ft_error(t_ps *ps);
 
@@ -135,6 +145,17 @@ void	ft_error(t_ps *ps);
 ** @param	ps	The pointer of the program's structure
 */
 void	ft_printstacks(t_ps *ps);
+
+/*
+** cmd.c
+*/
+
+/*
+** Initialize the `cmd` variable.
+**
+** @param	cmd	The `cmd` variable
+*/
+void	ft_cmdinit(t_cmd cmd[33]);
 
 /*
 ** Operations

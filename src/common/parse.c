@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:35:11 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:36:56 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 20:12:06 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,25 @@ static void	handle_str(t_ps *ps, const char *s)
 			ft_error(ps);
 		ft_nodeadd_back(&ps->a, n);
 	}
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }
 
-void	ft_parse(t_ps *ps)
+void	ft_parse(t_ps *ps, const char **av)
 {
 	int	i;
 
 	i = 1;
+	if (!ft_strcmp(av[i], "-v"))
+	{
+		ps->flags |= FLAGS_V;
+		i++;
+	}
 	ps->a = NULL;
 	ps->b = NULL;
-	while (ps->av[i])
-		handle_str(ps, ps->av[i++]);
+	while (av[i])
+		handle_str(ps, av[i++]);
 	return ;
 }

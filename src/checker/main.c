@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 17:19:34 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:31:45 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 20:12:47 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int	main(int ac, const char **av)
 
 	if (ac == 1)
 		return (0);
-	ps.av = av;
-	ft_parse(&ps);
+	ps.flags = 0;
+	ft_parse(&ps, av);
+	if (ps.flags & FLAGS_V)
+		ft_printstacks(&ps);
 	ft_read(&ps);
-	// execute operations
-	if (ft_check(&ps))
+	if (!ft_check(&ps))
 		ft_putendl_fd(SUCCESS_MSG, STDOUT_FILENO);
 	else
 		ft_putendl_fd(FAILURE_MSG, STDOUT_FILENO);

@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/13 03:27:56 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/15 19:46:57 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ COMMON_FILES	=	main.c \
 					check.c \
 					exit.c \
 					print.c \
+					cmd.c \
 					exec/swap.c \
 					exec/push.c \
 					exec/rotate.c \

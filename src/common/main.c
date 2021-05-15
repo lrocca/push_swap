@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:53:08 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 18:54:09 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 14:56:46 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,30 @@ void	ft_nodepush_front(t_node **head, t_node *new)
 		(*head)->prev->next = new;
 		(*head)->prev = new;
 		*head = new;
+	}
+}
+
+void	ft_nodedelone(t_node *del)
+{
+	if (del)
+		free(del);
+}
+
+void	ft_nodeclear(t_node **head)
+{
+	t_node	*curr;
+	t_node	*next;
+
+	if (head && *head)
+	{
+		curr = (*head)->next;
+		while (curr != *head)
+		{
+			next = curr->next;
+			ft_nodedelone(curr);
+			curr = next;
+		}
+		ft_nodedelone(curr);
+		*head = NULL;
 	}
 }

@@ -6,50 +6,99 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:27:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 03:57:56 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 20:13:21 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static char	new_op(t_ps *ps, char c)
+static char	*ft_bufjoin(char *line, char buffer[128])
 {
-	static char	buffer[4] = {0};
-	int	i;
+	int		i;
+	int		j;
+	char	*new;
 
 	i = 0;
-	if (c != '\n')
+	j = 0;
+	new = malloc(ft_strlen(line) + ft_strlen(buffer) + 1);
+	if (!new)
+		return (NULL);
+	while (line && line[j])
+		new[i++] = line[j++];
+	if (line)
 	{
-		while (buffer[i] && i < 4)
-			i++;
-		if (i > 2 || !ft_isalpha(c))
-			ft_error(ps);
-		buffer[i] = c;
-		if (ft_strnstr(OPS, buffer, OPS_LEN) != (char *)&OPS)
-			ft_lstadd_back(&ps->op, ft_lstnew(ft_strdup(buffer)));
-		else if (!buffer[2])
-			;
-		else
-			ft_error(ps);
+		free(line);
+		line = NULL;
 	}
-	else if (ft_strlen(buffer))
+	j = 0;
+	while (buffer && buffer[j])
+		new[i++] = buffer[j++];
+	new[i] = '\0';
+	return (new);
+}
+
+static char	get_next_line(int fd, char **line)
+{
+	int		n;
+	int		i;
+	char	c;
+	char	buffer[128];
+
+	*line = NULL;
+	i = 0;
+	n = 1;
+	while (n > 0)
+	{
+		n = read(fd, &c, 1);
+		if (c == '\n')
+			break ;
+		buffer[i] = c;
+		i++;
+		if (i == 127)
+		{
+			buffer[i] = '\0';
+			*line = ft_bufjoin(*line, buffer);
+			i = 0;
+		}
+	}
+	buffer[i] = '\0';
+	*line = ft_bufjoin(*line, buffer);
+	return (n);
+}
+
+static void	check_op(t_ps *ps, char **line, char gnl)
+{
+	char	*ops;
+	char	*ret;
+	t_cmd	cmd[33];
+
+	ft_cmdinit(cmd);
+	ops = OPS;
+	if (!*line || (gnl && ft_strlen(*line) == 0) || ft_strchr(*line, ' '))
 		ft_error(ps);
-	ft_bzero(buffer, 4);
-	return (ft_strlen(buffer));
+	if (ft_strlen(*line))
+	{
+		ret = ft_strnstr(ops, *line, OPS_LEN);
+		if (!ret)
+			ft_error(ps);
+		cmd[ret - ops - 1](ps);
+		if (ps->flags & FLAGS_V)
+			ft_printstacks(ps);
+	}
 }
 
 void	ft_read(t_ps *ps)
 {
-	int		ret;
-	char	c;
-	char	count;
+	char	ret;
+	char	*line;
 
 	ret = 1;
-	while (ret)
+	line = NULL;
+	while (ret > 0)
 	{
-		ret = read(STDIN_FILENO, &c, 1);
-		count = new_op(ps, c);
+		ret = get_next_line(STDIN_FILENO, &line);
+		check_op(ps, &line, ret);
 	}
-	if (count)
+	if (ret < 0)
 		ft_error(ps);
 }
