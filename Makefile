@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/15 19:46:57 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/15 20:28:48 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,16 +44,27 @@ CHECKER_FILES	=	main.c \
 CHECKER_SRC		=	$(addprefix $(CHECKER_DIR)/, $(CHECKER_FILES))
 CHECKER_OBJ		=	$(patsubst $(CHECKER_DIR)%,$(OBJ)/$(CHECKER)%,$(CHECKER_SRC:.c=.o))
 
+# push_swap
+PUSH_SWAP			=	push_swap
+PUSH_SWAP_DIR		=	$(SRC)/$(PUSH_SWAP)
+PUSH_SWAP_FILES		=	main.c \
+						exit.c
+PUSH_SWAP_SRC		=	$(addprefix $(PUSH_SWAP_DIR)/, $(PUSH_SWAP_FILES))
+PUSH_SWAP_OBJ		=	$(patsubst $(PUSH_SWAP_DIR)%,$(OBJ)/$(PUSH_SWAP)%,$(PUSH_SWAP_SRC:.c=.o))
+
 # libft
 LIBFT_DIR	=	./libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
-all: $(CHECKER)
+all: $(CHECKER) $(PUSH_SWAP)
 
 $(LIBFT): $(LIBFT_DIR)
 	make -C $<
 
 $(CHECKER): $(CHECKER_OBJ) $(COMMON_OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(PUSH_SWAP): $(PUSH_SWAP_OBJ) $(COMMON_OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ)/%.o: $(SRC)/%.c $(INC) Makefile

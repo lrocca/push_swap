@@ -4,7 +4,7 @@
 
 ### exit
 
-- [ ] double new line when printing `Error\n`
+- [x] double new line when printing `Error\n`
 
 ### node
 
