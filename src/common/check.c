@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:03:56 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/13 02:10:33 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/15 19:50:24 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ char	ft_check(t_ps *ps)
 {
 	if (ps->b || !ps->a)
 		return (1);
-	return (ft_issorted(ps->a));
+	return (!ft_issorted(ps->a));
 }
