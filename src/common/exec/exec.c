@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 19:53:44 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/17 20:26:34 by lrocca           ###   ########.fr       */
+/*   Created: 2021/05/17 20:08:43 by lrocca            #+#    #+#             */
+/*   Updated: 2021/05/17 20:33:52 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "common.h"
 
-int	main(int ac, const char **av)
+void	ft_exec(t_ps *ps, const char *s)
 {
-	t_ps	ps;
+	static t_cmd	cmd[33] = {NULL};
+	char			*ops;
+	char			*ret;
 
-	if (ac == 1)
-		return (0);
-	ps.flags = 0;
-	ps.flags |= FLAGS_PS;
-	ft_parse(&ps, av);
-	if (ft_issorted(ps.a))
-		ft_exit(&ps, EXIT_SUCCESS);
-	if (ps.len < 6)
-		ft_sort_five(&ps);
-	else
-		ft_putendl_fd("more than 5", STDOUT_FILENO);
-	ft_printstacks(&ps);
-	if (ft_check(&ps))
-		ft_error(&ps);
-	ft_exit(&ps, EXIT_SUCCESS);
-	return (0);
+	ops = OPS;
+	if (cmd[0] == NULL)
+		ft_cmdinit(cmd);
+	ret = ft_strnstr(ops, s, OPS_LEN);
+	if (!ret)
+		ft_error(ps);
+	cmd[ret - ops - 1](ps);
+	if (ps->flags & FLAGS_PS)
+		ft_putendl_fd((char *)s, STDOUT_FILENO);
+	if (ps->flags & FLAGS_V)
+		ft_printstacks(ps);
 }

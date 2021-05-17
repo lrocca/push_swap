@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:27:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/15 20:13:21 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:33:58 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,10 @@ static char	get_next_line(int fd, char **line)
 
 static void	check_op(t_ps *ps, char **line, char gnl)
 {
-	char	*ops;
-	char	*ret;
-	t_cmd	cmd[33];
-
-	ft_cmdinit(cmd);
-	ops = OPS;
 	if (!*line || (gnl && ft_strlen(*line) == 0) || ft_strchr(*line, ' '))
 		ft_error(ps);
 	if (ft_strlen(*line))
-	{
-		ret = ft_strnstr(ops, *line, OPS_LEN);
-		if (!ret)
-			ft_error(ps);
-		cmd[ret - ops - 1](ps);
-		if (ps->flags & FLAGS_V)
-			ft_printstacks(ps);
-	}
+		ft_exec(ps, *line);
 }
 
 void	ft_read(t_ps *ps)

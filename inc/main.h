@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:27:54 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/15 20:12:01 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:24:34 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERROR_MSG	"Error"
 
 # define FLAGS_V	1
+# define FLAGS_PS	2
 
 typedef struct s_node
 {
@@ -36,6 +37,7 @@ typedef struct s_ps
 {
 	t_node		*a;
 	t_node		*b;
+	int			len;
 	int			flags;
 }	t_ps;
 
@@ -156,6 +158,18 @@ void	ft_printstacks(t_ps *ps);
 ** @param	cmd	The `cmd` variable
 */
 void	ft_cmdinit(t_cmd cmd[33]);
+
+/*
+** exec.c
+*/
+
+/*
+** Execute an operation.
+**
+** @param	ps	The pointer of the program's structure
+** @param	s	The operation to execute
+*/
+void	ft_exec(t_ps *ps, const char *s);
 
 /*
 ** Operations
