@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 19:45:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 16:43:42 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/18 22:47:49 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,21 @@ void	ft_printstacks(t_ps *ps)
 	print_row(ps->a, ps->b, max);
 	curr_a = NULL;
 	curr_b = NULL;
-	if (ps->a)
+	if (ps->a && ps->a != ps->a->next)
 		curr_a = ps->a->next;
-	if (ps->b)
+	if (ps->b && ps->b != ps->b->next)
 		curr_b = ps->b->next;
-	while ((ps->a && curr_a != ps->a) || (ps->b && curr_b != ps->b))
+	while (curr_a || curr_b)
 	{
-		if (curr_a == ps->a)
-			print_row(NULL, curr_b, max);
-		if (curr_b == ps->b)
-			print_row(curr_a, NULL, max);
-		if (curr_a != ps->a && curr_b != ps->b)
-			print_row(ps->a, ps->b, max);
+		print_row(curr_a, curr_b, max);
 		if (curr_a)
 			curr_a = curr_a->next;
 		if (curr_b)
 			curr_b = curr_b->next;
+		if (curr_a == ps->a)
+			curr_a = NULL;
+		if (curr_b == ps->b)
+			curr_b = NULL;
 	}
 	print_footer(max);
 }
