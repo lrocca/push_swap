@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:27:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/17 20:33:58 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/18 21:14:55 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ static void	check_op(t_ps *ps, char **line, char gnl)
 		ft_error(ps);
 	if (ft_strlen(*line))
 		ft_exec(ps, *line);
+	if (*line)
+	{
+		free(*line);
+		*line = NULL;
+	}
 }
 
 void	ft_read(t_ps *ps)
@@ -88,4 +93,6 @@ void	ft_read(t_ps *ps)
 	}
 	if (ret < 0)
 		ft_error(ps);
+	if (line)
+		free(line);
 }
