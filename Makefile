@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/17 20:24:05 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/18 21:57:36 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,4 +85,4 @@ fclean: clean
 re: fclean all
 
 test: all
-	./checker 1 2 3
+	./test/test.sh

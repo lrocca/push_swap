@@ -11,6 +11,10 @@
 - [x] free one node
 - [x] free stack
 
+### print
+
+- [ ] make `max` static
+
 ### cmd reference
 
 op | val | i
