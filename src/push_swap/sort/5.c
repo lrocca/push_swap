@@ -6,37 +6,48 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:24:42 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/25 16:49:50 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/25 20:08:14 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	merge_stacks(t_ps *ps)
+static t_node	*ft_nodemin(t_node *head)
 {
-	if (ps->b->value > ps->b->next->value)
-		ft_exec(ps, RB);
-	while (ps->b)
+	t_node	*curr;
+	t_node	*min;
+
+	min = head;
+	curr = head->next;
+	while (curr != head)
 	{
-		if ((ps->a->value > ps->b->value && ps->a->prev->value < ps->b->value) \
-		|| (ps->a->prev->value > ps->a->value && \
-		(ps->a->value > ps->b->value || ps->a->prev->value < ps->b->value)))
-			ft_exec(ps, PA);
-		ft_exec(ps, RA);
+		if (curr->value < min->value)
+			min = curr;
+		curr = curr->next;
 	}
-	while (ps->a->value > ps->a->prev->value)
-		ft_exec(ps, RA);
+	return (min);
 }
 
 void	ft_sort_five(t_ps *ps)
 {
-	int	len;
+	t_node	*min;
+	char	*op;
+	int		len;
 
 	len = ps->len;
 	while (len-- > 3 && !ft_issorted(ps->a))
+	{
+		min = ft_nodemin(ps->a);
+		op = RA;
+		if (!(min == ps->a || min == ps->a->next \
+		|| (ps->len == 5 && min == ps->a->next->next)))
+			op = RRA;
+		while (ps->a != min)
+			ft_exec(ps, op);
 		ft_exec(ps, PB);
+	}
 	if (!ft_issorted(ps->a))
 		ft_sort_three(ps);
-	if (ps->b)
-		merge_stacks(ps);
+	while (ps->b)
+		ft_exec(ps, PA);
 }
