@@ -39,9 +39,9 @@ print_stat() {
 test() {
 	printf "${C_BBLUE}$1${C_RESET}\n"
 
-	too_many_ops=0
-	bad_ops=0
-	average=()
+	fail_ops=0
+	ko_ops=0
+	all_ops=()
 	ko=0
 
 	for i in $( seq 1 $3 )
@@ -53,8 +53,7 @@ test() {
 
 		printf "${C_LGRAY}%-5i" ${i}
 
-		# tmp=$(($average + $ops))
-		average[i]=$(($ops))
+		all_ops[i]=$(($ops))
 
 		if [[ $((ops)) -lt $2 ]]; then
 			status=${C_LGREEN}
@@ -62,7 +61,7 @@ test() {
 			status=${C_BYELLOW}
 		else
 			status=${C_BRED}
-			too_many_ops=$(($too_many_ops + 1))
+			fail_ops=$(($fail_ops + 1))
 			ko=1
 		fi
 
@@ -72,7 +71,7 @@ test() {
 			status=${C_GREEN}
 		else
 			status=${C_RED}
-			bad_ops=$(($bad_ops + 1))
+			ko_ops=$(($ko_ops + 1))
 			ko=1
 		fi
 
@@ -87,25 +86,27 @@ test() {
 		echo
 	done
 
-	avg=$(IFS='+'; bc<<<"scale=1;(${average[*]})/${#average[@]}")
+	avg=$(IFS='+'; bc<<<"scale=1;(${all_ops[*]})/${#all_ops[@]}")
 
 	if [[ ${avg::1} == "." ]]; then
 		avg="0"$avg
 	fi
 
+	max=$(IFS=$'\n'; echo "${all_ops[*]}" | sort -nr | head -n1)
+
 	printf "$C_YELLOW$1"
 	print_stat "avg" $avg
-	print_stat "fail" $too_many_ops
-	print_stat "ko" $bad_ops
+	print_stat "max" $max
+	print_stat "fail" $fail_ops
+	print_stat "ko" $ko_ops
 	echo
 	echo
 }
 
 touch $TMP
 
-# test 3 4 10
-test 4 12 1000
-test 5 12 1000
+test 3 4 10
+test 5 12 10
 # test 6 0 8
 
 rm $TMP
