@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:35:11 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/17 18:20:52 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/25 19:05:06 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static void	handle_str(t_ps *ps, const char *s)
 		if (!is_valid_input(split[i]))
 			ft_error(ps);
 		n = ft_atoi(split[i++]);
+		if (errno == -42)
+			ft_error(ps);
 		if (!is_unique(ps->a, n))
 			ft_error(ps);
 		ps->len++;

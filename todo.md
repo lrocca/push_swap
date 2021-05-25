@@ -36,7 +36,7 @@ rrr | 33 | 32
 ### parsing
 
 - [x] check if values are unique
-- [ ] check if integer or >
+- [x] check if integer or >
 - [ ] write `ft_atoi_base` to accept other base from input
   - [ ] `export BASE=` to change default (10): add `#ifndef` to `BASE`
 
