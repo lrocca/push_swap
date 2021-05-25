@@ -42,13 +42,14 @@ test() {
 	too_many_ops=0
 	bad_ops=0
 	average=()
+	ko=0
 
 	for i in $( seq 1 $3 )
 	do
-		arg=`ruby -e "puts (1..$1).to_a.shuffle.join(' ')"`
+		arg=`ruby -e "puts (1..$1).to_a.shuffle.join(' ')" 2> /dev/null`
 		$PUSH_SWAP $arg > $TMP 2> /dev/null
 		ops=`wc -l < $TMP`
-		ok=`$CHECKER $arg < $TMP 2> /dev/null`
+		checker=`$CHECKER $arg < $TMP 2> /dev/null`
 
 		printf "${C_LGRAY}%-5i" ${i}
 
@@ -62,16 +63,26 @@ test() {
 		else
 			status=${C_BRED}
 			too_many_ops=$(($too_many_ops + 1))
+			ko=1
 		fi
 
 		printf "${status}%2i$C_RESET " $((ops))
 
-		if [[ $ok == "OK" ]]; then
-			printf "${C_GREEN}%5s$C_RESET" "OK"
+		if [[ $checker == "OK" ]]; then
+			status=${C_GREEN}
 		else
-			printf "${C_RED}%5s${C_RESET}\t${arg}" "KO"
+			status=${C_RED}
 			bad_ops=$(($bad_ops + 1))
+			ko=1
 		fi
+
+		printf "${status}%5s$C_RESET" $checker
+
+		if [[ $ko -eq 1 ]]; then
+			echo -en "\t${arg}"
+		fi
+
+		ko=0
 
 		echo
 	done
@@ -92,8 +103,9 @@ test() {
 
 touch $TMP
 
-test 3 4 10
-test 5 12 10
+# test 3 4 10
+test 4 12 1000
+test 5 12 1000
 # test 6 0 8
 
 rm $TMP
