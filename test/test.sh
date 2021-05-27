@@ -42,12 +42,14 @@ test() {
 	fail_ops=0
 	ko_ops=0
 	all_ops=()
-	ko=0
 
 	for i in $( seq 1 $3 )
 	do
+		ko=0
+		echo "" > $TMP
+
 		arg=`ruby -e "puts (1..$1).to_a.shuffle.join(' ')" 2> /dev/null`
-		$PUSH_SWAP $arg > $TMP 2> /dev/null
+		($PUSH_SWAP $arg 1> $TMP 2> /dev/null)
 		ops=`wc -l < $TMP`
 		checker=`$CHECKER $arg < $TMP 2> /dev/null`
 
@@ -81,8 +83,6 @@ test() {
 			echo -en "\t${arg}"
 		fi
 
-		ko=0
-
 		echo
 	done
 
@@ -93,10 +93,12 @@ test() {
 	fi
 
 	max=$(IFS=$'\n'; echo "${all_ops[*]}" | sort -nr | head -n1)
+	max_times=$(echo ${all_ops[*]} | grep -o ${max} | wc -l | tr -d ' ')
 
-	printf "$C_YELLOW$1"
+	printf "$C_YELLOW$1$C_RESET"
 	print_stat "avg" $avg
 	print_stat "max" $max
+	echo -n " ($max_times)"
 	print_stat "fail" $fail_ops
 	print_stat "ko" $ko_ops
 	echo
@@ -107,6 +109,7 @@ touch $TMP
 
 test 3 4 10
 test 5 12 10
-# test 6 0 8
+test 100 1100 10
+test 500 7000 10
 
 rm $TMP
