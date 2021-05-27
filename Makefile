@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/18 21:57:36 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/27 18:56:26 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ CHECKER_OBJ		=	$(patsubst $(CHECKER_DIR)%,$(OBJ)/$(CHECKER)%,$(CHECKER_SRC:.c=.o
 PUSH_SWAP			=	push_swap
 PUSH_SWAP_DIR		=	$(SRC)/$(PUSH_SWAP)
 PUSH_SWAP_FILES		=	main.c \
-						sort/3.c sort/5.c \
+						sort/3.c sort/5.c sort/n.c \
+						indices.c \
 						exit.c
 PUSH_SWAP_SRC		=	$(addprefix $(PUSH_SWAP_DIR)/, $(PUSH_SWAP_FILES))
 PUSH_SWAP_OBJ		=	$(patsubst $(PUSH_SWAP_DIR)%,$(OBJ)/$(PUSH_SWAP)%,$(PUSH_SWAP_SRC:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 20:23:18 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/17 20:28:44 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/27 18:56:26 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # define	RRB	"rrb"
 # define	RRR	"rrr"
 
+void	set_indices(t_ps *ps);
+
 void	ft_sort_three(t_ps *ps);
 void	ft_sort_five(t_ps *ps);
+void	ft_sort_n(t_ps *ps);
 
 #endif
