@@ -8,5 +8,6 @@
 /push_swap
 libft.a
 
-# vscode
+# other
 .vscode
+*.tmp
