@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/27 18:56:26 by lrocca           ###   ########.fr        #
+#    Updated: 2021/05/27 20:07:04 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ COMMON_FILES	=	main.c \
 					exec/swap.c \
 					exec/push.c \
 					exec/rotate.c \
-					exec/reverse.c
+					exec/reverse.c \
+					utils/print.c
 COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
 COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/$(COMMON)%,$(COMMON_SRC:.c=.o))
 
@@ -87,3 +88,7 @@ re: fclean all
 
 test: all
 	./test/test.sh
+
+norm: all
+	clear
+	norminette | grep Error

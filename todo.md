@@ -14,6 +14,7 @@
 ### print
 
 - [ ] make `max` static
+- [ ] bug with max int len
 
 ### cmd reference
 
