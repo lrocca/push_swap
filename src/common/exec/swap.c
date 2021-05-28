@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 15:17:02 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/12 17:23:48 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/28 18:33:20 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	sa(t_ps *ps)
 	t_node	*new;
 	t_node	*last;
 
-	(void)ps->b;
 	if (!ps->a || ps->a == ps->a->next)
 		return ;
 	first = ps->a;
@@ -39,7 +38,6 @@ void	sb(t_ps *ps)
 	t_node	*new;
 	t_node	*last;
 
-	(void)ps->a;
 	if (!ps->b || ps->b == ps->b->next)
 		return ;
 	first = ps->b;
