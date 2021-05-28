@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 02:03:56 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/15 19:50:24 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/05/28 18:08:47 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	ft_issorted(t_node *head)
 	t_node	*curr;
 	int		value;
 
+	if (!head)
+		return (0);
 	value = head->value;
 	curr = head->next;
 	while (curr != head)
