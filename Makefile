@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/06 17:24:13 by lrocca            #+#    #+#              #
-#    Updated: 2021/05/27 20:07:04 by lrocca           ###   ########.fr        #
+#    Updated: 2021/09/22 19:47:36 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,16 @@ INC		=	./inc
 COMMON			=	common
 COMMON_DIR		=	$(SRC)/$(COMMON)
 COMMON_FILES	=	main.c \
-					parse.c \
 					check.c \
-					exit.c \
-					print.c \
 					cmd.c \
+					exit.c \
+					parse.c \
+					print.c \
 					exec/exec.c \
-					exec/swap.c \
 					exec/push.c \
-					exec/rotate.c \
 					exec/reverse.c \
+					exec/rotate.c \
+					exec/swap.c \
 					utils/print.c
 COMMON_SRC		=	$(addprefix $(COMMON_DIR)/, $(COMMON_FILES))
 COMMON_OBJ		=	$(patsubst $(COMMON_DIR)%,$(OBJ)/$(COMMON)%,$(COMMON_SRC:.c=.o))
@@ -51,7 +51,7 @@ PUSH_SWAP			=	push_swap
 PUSH_SWAP_DIR		=	$(SRC)/$(PUSH_SWAP)
 PUSH_SWAP_FILES		=	main.c \
 						sort/3.c sort/5.c sort/n.c \
-						indices.c \
+						indices.c lis.c \
 						exit.c
 PUSH_SWAP_SRC		=	$(addprefix $(PUSH_SWAP_DIR)/, $(PUSH_SWAP_FILES))
 PUSH_SWAP_OBJ		=	$(patsubst $(PUSH_SWAP_DIR)%,$(OBJ)/$(PUSH_SWAP)%,$(PUSH_SWAP_SRC:.c=.o))
