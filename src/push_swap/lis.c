@@ -6,13 +6,13 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:05:25 by lrocca            #+#    #+#             */
-/*   Updated: 2021/09/23 16:00:51 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/09/23 17:41:16 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	stack_len(t_node *head)
+int	stack_len(t_node *head)
 {
 	t_node	*curr;
 	int		len;
