@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 17:27:54 by lrocca            #+#    #+#             */
-/*   Updated: 2021/05/27 14:30:00 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/09/23 16:37:16 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_node
 	struct s_node	*prev;
 	struct s_node	*next;
 	int				value;
-	int				index;
 }	t_node;
 
 typedef struct s_ps
