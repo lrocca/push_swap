@@ -27,8 +27,6 @@
 # define	RRB	"rrb"
 # define	RRR	"rrr"
 
-void	set_indices(t_ps *ps);
-
 void	ft_sort_three(t_ps *ps);
 void	ft_sort_five(t_ps *ps);
 void	ft_sort_n(t_ps *ps);
