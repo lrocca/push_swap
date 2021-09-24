@@ -6,79 +6,39 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:05:25 by lrocca            #+#    #+#             */
-/*   Updated: 2021/09/23 17:41:16 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/09/24 15:03:16 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_len(t_node *head)
+static void	lis_reverse(int *array, int *trace, int length)
 {
-	t_node	*curr;
-	int		len;
+	int	i;
+	int	j;
 
-	if (!head)
-		return (0);
-	len = 1;
-	curr = head->next;
-	while (curr != head)
+	i = length;
+	j = array[length];
+	while (i >= 0)
 	{
-		len++;
-		curr = curr->next;
+		array[i--] = j;
+		j = trace[j];
 	}
-	return (len);
+	array[length + 1] = -1;
 }
 
-static int	*stack_to_array(t_node *head)
+static void	lis_loop(int *stack, int *array, int *trace, int size)
 {
-	int		*array;
-	t_node	*curr;
-	int		i;
+	int	i;
+	int	j;
+	int	length;
 
-	array = malloc(sizeof(int) * stack_len(head));
-	if (!array)
-		return (NULL);
-	i = 0;
-	array[i++] = head->value;
-	curr = head->next;
-	while (curr != head)
-	{
-		array[i++] = curr->value;
-		curr = curr->next;
-	}
-	return (array);
-}
-
-void	lis(t_ps *ps)
-{
-	int		*array;
-	int		*trace;
-	int		*stack;
-	int		i;
-	int		j;
-	int		size;
-	int		length;
-
-	stack = stack_to_array(ps->a);
-	size = stack_len(ps->a);
-	array = malloc(sizeof(int) * size);
-	trace = malloc(sizeof(int) * size);
-	if (!stack || !array)
-		ft_error(ps);
-	j = 0;
-	while (j < size)
-	{
-		array[j] = -1;
-		trace[j++] = -1;
-	}
-	array[0] = 0;
 	i = 1;
 	length = 0;
 	while (i < size)
 	{
-		if (stack[i] > stack[array[length]])
+		if (stack[i] > stack[array[length]] && length++)
 		{
-			length++;
 			array[length] = i;
 			trace[array[length]] = array[length - 1];
 		}
@@ -100,14 +60,33 @@ void	lis(t_ps *ps)
 		}
 		i++;
 	}
-	j = array[length];
-	i = length;
-	while (i >= 0)
+	lis_reverse(array, trace, length);
+}
+
+static void	lis_algo(t_ps *ps, int *stack, int *array, int size)
+{
+	int	*trace;
+	int	i;
+
+	trace = malloc(sizeof(int) * size);
+	if (!trace)
+		ft_error(ps);
+	i = 0;
+	while (i < size)
 	{
-		array[i--] = j;
-		j = trace[j];
+		array[i] = -1;
+		trace[i] = -1;
+		i++;
 	}
-	array[length + 1] = -1;
+	array[0] = 0;
+	lis_loop(stack, array, trace, size);
+	free(trace);
+}
+
+static void	lis_exec(t_ps *ps, int *array, int size)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -122,8 +101,21 @@ void	lis(t_ps *ps)
 			ft_exec(ps, PB);
 		i++;
 	}
+}
 
-	free(array);
-	free(trace);
+void	lis(t_ps *ps)
+{
+	int		*array;
+	int		*stack;
+	int		size;
+
+	size = stack_len(ps->a);
+	stack = stack_to_array(ps->a);
+	array = malloc(sizeof(int) * size);
+	if (!stack || !array)
+		ft_error(ps);
+	lis_algo(ps, stack, array, size);
 	free(stack);
+	lis_exec(ps, array, size);
+	free(array);
 }
