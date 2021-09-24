@@ -109,7 +109,7 @@ touch $TMP
 
 test 3 4 10
 test 5 12 10
-test 100 1100 10
-test 500 7000 10
+test 100 700 20
+test 500 5500 20
 
 rm $TMP
