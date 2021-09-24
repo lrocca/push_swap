@@ -11,3 +11,4 @@ libft.a
 # other
 .vscode
 *.tmp
+.DS_Store
