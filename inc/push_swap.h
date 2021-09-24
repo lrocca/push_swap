@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 20:23:18 by lrocca            #+#    #+#             */
-/*   Updated: 2021/09/24 14:53:05 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/09/24 17:15:33 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,20 @@
 # define	RRB	"rrb"
 # define	RRR	"rrr"
 
+typedef struct s_lis
+{
+	int	*array;
+	int	*trace;
+	int	*stack;
+	int	size;
+	int	length;
+}	t_lis;
+
 void	ft_sort_three(t_ps *ps);
 void	ft_sort_five(t_ps *ps);
 void	ft_sort_n(t_ps *ps);
 
-void	lis(t_ps *ps);
+void	ft_lis(t_ps *ps);
 int		calc_best(t_ps *ps);
 
 int		stack_len(t_node *head);

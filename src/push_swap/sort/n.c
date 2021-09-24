@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 18:27:10 by lrocca            #+#    #+#             */
-/*   Updated: 2021/09/24 14:49:55 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/09/24 16:56:55 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_sort_n(t_ps *ps)
 	int		size;
 	t_node	*curr;
 
-	lis(ps);
+	ft_lis(ps);
 	while (ps->b)
 	{
 		best = calc_best(ps);
